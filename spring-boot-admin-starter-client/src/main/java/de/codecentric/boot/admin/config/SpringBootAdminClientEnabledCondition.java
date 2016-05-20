@@ -62,6 +62,7 @@ public class SpringBootAdminClientEnabledCondition extends SpringBootCondition {
 	}
 
 	private boolean isUrlEmpty(Environment env) {
+		//TODO yaml 在配置为数组时,这里判断还是空
 		RelaxedPropertyResolver resolver = new RelaxedPropertyResolver(env, "spring.boot.admin.");
 		return StringUtils.isEmpty(resolver.getProperty("url", ""));
 	}

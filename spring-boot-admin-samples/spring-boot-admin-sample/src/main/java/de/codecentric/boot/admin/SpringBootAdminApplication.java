@@ -15,19 +15,43 @@
  */
 package de.codecentric.boot.admin;
 
+import de.codecentric.boot.admin.config.AdminClientProperties;
+import de.codecentric.boot.admin.config.AdminProperties;
+import de.codecentric.boot.admin.services.ApplicationRegistrator;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.bind.RelaxedPropertyResolver;
+import org.springframework.boot.context.ContextIdApplicationContextInitializer;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import de.codecentric.boot.admin.config.EnableAdminServer;
+import org.springframework.context.annotation.DependsOn;
+import org.springframework.core.env.Environment;
+import org.springframework.util.StringUtils;
+
+import javax.annotation.PostConstruct;
+import java.util.List;
 
 @Configuration
 @EnableAutoConfiguration
 @EnableAdminServer
+@ComponentScan(basePackages = "de.codecentric.boot")
 public class SpringBootAdminApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootAdminApplication.class, args);
 	}
 
+
+	@Autowired
+	private de.codecentric.boot.admin.config.AdminClientProperties adminClientProperties;
+	@PostConstruct
+	public void init(){
+		adminClientProperties.setName("cccccccccccccc");
+
+	}
 }
